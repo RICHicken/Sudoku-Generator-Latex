@@ -203,23 +203,23 @@ namespace Sudoku_Generator
                 } while (response != ConsoleKey.Y && response != ConsoleKey.N);
             }
 
-
             // Write to file
-
-            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\output"))
+            
+            char slash = Path.DirectorySeparatorChar;
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + slash + "output"))
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\output");
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + slash + "output");
             }
 
             if (separate)
             {
-                StreamWriter puzzle = new StreamWriter(Directory.GetCurrentDirectory() + $"\\output\\{name}.tex");
-                StreamWriter sol = new StreamWriter(Directory.GetCurrentDirectory() + $"\\output\\{name}_sol.tex");
+                StreamWriter puzzle = new StreamWriter(Directory.GetCurrentDirectory() + $"{slash}output{slash}{name}.tex");
+                StreamWriter sol = new StreamWriter(Directory.GetCurrentDirectory() + $"{slash}output{slash}{name}_sol.tex");
                 SaveSeparateLatex(board, solution, puzzle, sol);
             }
             else
             {
-                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + $"\\output\\{name}.tex");
+                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + $"{slash}output{slash}{name}.tex");
                 SaveLatex(board, solution, sw);
             }
 
